@@ -5,5 +5,7 @@ export const MAP_SEARCH = require('../Assets/images/mapSearch.png');
 export const HAND_SHAKE = require('../Assets/images/handShake.png');
 export const INFO = require('../Assets/images/info.png');
 export const BACK = require('../Assets/images/backImg.png');
+export const DOWN = require('../Assets/images/Down.png');
+
 
 

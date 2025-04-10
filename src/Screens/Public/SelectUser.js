@@ -12,6 +12,7 @@ import { HAND_SHAKE, MAP_SEARCH, RIGHT, THEME_IMG_1, THEME_IMG_2 } from '../../C
 import { BLACK, LIGHT_GREY, THEME_GREEN, THEME_ORANGE } from '../../Components/Colors';
 import { useFocusEffect } from '@react-navigation/native';
 import Icon from '../../Components/Icon';
+import { FULL_WIDTH } from '../../Components/Typography';
 
 const SelectUser = ({ navigation }) => {
   const [selected, setSelected] = useState('');
@@ -68,13 +69,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   blobTop: {
-    width: Dimensions.get('screen').width,
+    width: FULL_WIDTH,
     position: 'absolute',
     top: 0,
     height: 350
   },
   blobBottom: {
-    width: Dimensions.get('screen').width,
+    width: FULL_WIDTH,
     position: 'absolute',
     bottom: 0,
     height: 350
