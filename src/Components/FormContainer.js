@@ -16,7 +16,7 @@ const FormContainer = ({ children, style }) => {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         style={styles.flex}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'heigth' : undefined}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0} 
       >
         <TouchableWithoutFeedback onPress={Keyboard?.dismiss}>

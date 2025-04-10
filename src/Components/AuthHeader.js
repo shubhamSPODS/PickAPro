@@ -9,20 +9,20 @@ import { BOLD, REGULAR, SEMI_BOLD } from './AppFonts';
 
 
 
-const AuthHeader = ({ title2, title, showBack = true, number }) => {
+const AuthHeader = ({title2, title, showBack = true,number }) => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       {showBack && (
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Icon source={BACK} size={25} tintColor={BLACK} />
+          <Icon source={BACK}  size={25} tintColor={BLACK}/>
         </TouchableOpacity>
       )}
       <Typography size={25} color={BLACK} fontFamily={SEMI_BOLD} style={styles.title}>{title}</Typography>
-      <Typography size={18} color={BLACK} fontFamily={REGULAR} style={[styles.title, { marginVertical: 0 }]}>{title2}<Typography style={[styles.title, { fontFamily: SEMI_BOLD }]}> {number}</Typography></Typography>
-
-
+      <Typography size={18} color={BLACK} fontFamily={REGULAR} style={[styles.title,{marginVertical:0}]}>{title2}<Typography style={[styles.title,{fontFamily:SEMI_BOLD}]}> {number}</Typography></Typography>
+   
+    
     </View>
   );
 };
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    marginVertical: 25
+    marginVertical:25
   },
 });

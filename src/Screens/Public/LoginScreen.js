@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import FormContainer from '../../Components/FormContainer'
 import AuthHeader from '../../Components/AuthHeader'
@@ -31,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
       <CommonButton title={'Continue'}  onPress={()=>{
         navigation.navigate('OtpVerify')
       }}/>
-    </FormContainer>
+      </FormContainer>
   )
 }
 
