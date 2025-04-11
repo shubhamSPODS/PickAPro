@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import CountryPicker from 'react-native-country-picker-modal';
 import Icon from './Icon';
 import { DOWN, THEME_IMG_1 } from './ImageAssets';
+import { BLACK, WHITE } from './Colors';
 
 const CountryCodePicker = ({ onSelectCountry }) => {
   const [countryCode, setCountryCode] = useState('US');
@@ -26,11 +27,13 @@ const CountryCodePicker = ({ onSelectCountry }) => {
       <CountryPicker
         countryCode={countryCode}
         withFlag
+        withFilter
         withCallingCode
         withCallingCodeButton
         onSelect={handleSelect}
+       
       />
-      <Icon source={DOWN} size={15} style={{marginLeft:5}}/>
+      {/* <Icon source={DOWN} size={15} style={{marginLeft:5}}/> */}
     </View>
   );
 };

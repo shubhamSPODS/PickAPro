@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   otpText:{
-    marginHorizontal: 10
+    marginLeft: 10
   }
 })

@@ -5,10 +5,17 @@ import LoginScreen from '../Screens/Public/LoginScreen';
 import HomeScreen from '../Screens/Private/HomeScreen';
 import OtpVerify from '../Screens/Public/OtpVerify';
 import SelectUser from '../Screens/Public/SelectUser';
+import { useSelector } from 'react-redux';
+import LocationAccess from '../Screens/Private/LocationAccess';
 
 const Stack = createNativeStackNavigator();
 
-
+export const MainNavigation = () => {
+    const isAuth = useSelector(store => store?.user)
+    return (
+        isAuth ==='True'? <AuthStack /> : <HomeStack />
+    )
+}
 export const AuthStack = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='SelectUser'>
@@ -20,10 +27,10 @@ export const AuthStack = () => {
     );
 };
 
-
 export const HomeStack = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='LocationAccess'>
+            <Stack.Screen name="LocationAccess" component={LocationAccess} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
     );

@@ -1237,6 +1237,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-geolocation-service (5.3.1):
+    - React
   - react-native-safe-area-context (5.3.0):
     - React-Core
   - react-native-splash-screen (3.3.0):
@@ -1501,6 +1503,8 @@ PODS:
     - React-logger (= 0.75.5)
     - React-perflogger (= 0.75.5)
     - React-utils (= 0.75.5)
+  - RNPermissions (5.3.0):
+    - React-Core
   - RNScreens (4.9.1):
     - DoubleConversion
     - glog
@@ -1564,6 +1568,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
@@ -1592,6 +1597,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -1671,6 +1677,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -1727,6 +1735,8 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -1768,6 +1778,7 @@ SPEC CHECKSUMS:
   React-logger: 15a50e9e2fabe5d684cdd818ff1cbd2285bab1f0
   React-Mapbuffer: 5dffd4714a7261a2fd1d94985eec118d0728b787
   React-microtasksnativemodule: 9856dcf1c3d981843197b1b75253a079d961795d
+  react-native-geolocation-service: 32b2c2a3b91e70ce2a8d0c684801aaeb0a07e0ec
   react-native-safe-area-context: fdb0a66feac038cb6eb1edafcf2ccee2b5cf0284
   react-native-splash-screen: 95994222cc95c236bd3cdc59fe45ed5f27969594
   React-nativeconfig: 237c862aab56a7426301fcbbb8dd6988745231e0
@@ -1796,6 +1807,7 @@ SPEC CHECKSUMS:
   React-utils: 43588634a9eca9915486154b143a0da615cfd893
   ReactCodegen: 43d3ebb0cb9c6ffc92a254d31749fd29d69844a2
   ReactCommon: ee80ae3d276a9f1daa059169405b97c600dcba45
+  RNPermissions: 5017380d9fe1f63f0d1403139bc8d630fe0b7a19
   RNScreens: b3975354ddafe0fb00112a9054898ccf0d92c78e
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 1dd9dabb9df8fe08f12cd522eae04a2da0e252eb

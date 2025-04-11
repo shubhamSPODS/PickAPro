@@ -16,9 +16,12 @@
     "react": "18.3.1",
     "react-native": "0.75.5",
     "react-native-country-picker-modal": "^2.0.0",
+    "react-native-geolocation-service": "^5.3.1",
     "react-native-otp-textinput": "^1.1.6",
+    "react-native-permissions": "^5.3.0",
     "react-native-safe-area-context": "^5.3.0",
     "react-native-screens": "^4.9.1",
+    "react-native-size-matters": "^0.4.2",
     "react-native-splash-screen": "^3.3.0",
     "react-redux": "^9.2.0"
   },

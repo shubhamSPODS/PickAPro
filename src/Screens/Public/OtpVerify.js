@@ -8,10 +8,12 @@ import { THEME_IMG_2 } from '../../Components/ImageAssets';
 import OTPTextView from 'react-native-otp-textinput';
 import { THEME_ORANGE } from '../../Components/Colors';
 import CommonButton from '../../Components/CommonButton';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../Redux/Slices';
 
 const OtpVerify = () => {
   const otpRef = useRef(null);
-
+ const dispatch = useDispatch()
   return (
     <FormContainer>
       <AuthHeader
@@ -45,7 +47,9 @@ const OtpVerify = () => {
         </Typography>
       </Typography>
 
-      <CommonButton title="Submit" style={styles.submitButton} />
+      <CommonButton title="Submit" style={styles.submitButton} onPress={()=>{
+         dispatch(setUser('True'))
+      }} />
       <BottomThemeImg source={THEME_IMG_2} />
     </FormContainer>
   );

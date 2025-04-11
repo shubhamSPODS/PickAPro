@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   SafeAreaView,
+  Platform,
 } from 'react-native';
 import { HAND_SHAKE, MAP_SEARCH, RIGHT, THEME_IMG_1, THEME_IMG_2 } from '../../Components/ImageAssets';
 import { BLACK, LIGHT_GREY, THEME_GREEN, THEME_ORANGE } from '../../Components/Colors';
@@ -72,13 +73,13 @@ const styles = StyleSheet.create({
     width: FULL_WIDTH,
     position: 'absolute',
     top: 0,
-    height: 350
+    height:Platform.OS==='ios'? 350:310
   },
   blobBottom: {
     width: FULL_WIDTH,
     position: 'absolute',
     bottom: 0,
-    height: 350
+    height: Platform.OS==='ios'? 350:310
 
   },
   cardContainer: {
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     padding: 10,
     borderColor: LIGHT_GREY,
-    borderWidth: 0.5,
+    borderWidth: 1,
 
   },
   cardSelected: {

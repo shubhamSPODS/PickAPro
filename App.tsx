@@ -1,12 +1,11 @@
 
 
-import { StatusBar, StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet,  } from 'react-native'
 import React from 'react'
-import { Provider } from 'react-redux'
+import { Provider,  } from 'react-redux'
 import store from './src/Redux/Store'
 import { NavigationContainer } from '@react-navigation/native'
-import LoginScreen from './src/Screens/Public/LoginScreen'
-import { AuthStack } from './src/Navigation/StackNavigation'
+import {  MainNavigation } from './src/Navigation/StackNavigation'
 import { WHITE } from './src/Components/Colors'
 
 const App = () => {
@@ -14,7 +13,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar backgroundColor={WHITE}/>
-       <AuthStack/>
+     <MainNavigation/>
       </NavigationContainer>
       </Provider>
   )
