@@ -48,7 +48,7 @@ const OtpVerify = () => {
       </Typography>
 
       <CommonButton title="Submit" style={styles.submitButton} onPress={()=>{
-         dispatch(setUser('True'))
+         dispatch(setUser(true))
       }} />
       <BottomThemeImg source={THEME_IMG_2} />
     </FormContainer>

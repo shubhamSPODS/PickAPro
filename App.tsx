@@ -2,17 +2,18 @@
 
 import { StatusBar, StyleSheet,  } from 'react-native'
 import React from 'react'
-import { Provider,  } from 'react-redux'
+import { Provider,   } from 'react-redux'
 import store from './src/Redux/Store'
 import { NavigationContainer } from '@react-navigation/native'
 import {  MainNavigation } from './src/Navigation/StackNavigation'
-import { WHITE } from './src/Components/Colors'
+import { THEME_ORANGE, WHITE } from './src/Components/Colors'
 
 const App = () => {
+ 
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <StatusBar backgroundColor={WHITE}/>
+      <StatusBar  barStyle="dark-content" backgroundColor={'#eb9555'}/>
      <MainNavigation/>
       </NavigationContainer>
       </Provider>

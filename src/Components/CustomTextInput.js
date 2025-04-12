@@ -1,53 +1,54 @@
+import { View, TextInput, StyleSheet, Image } from 'react-native';
 import React from 'react';
-import { View, TextInput, Text, StyleSheet } from 'react-native';
-import Typography, { FULL_WIDTH } from './Typography';
-import { BLACK, WHITE } from './Colors';
+import { SEARCH_ICON } from './ImageAssets';
+import { GREY_DARK, LIGHT_GREY, THEME_GREEN, WHITE } from './Colors';
 
-const CustomTextInput = ({
-    label,
-    placeholder,
-    value,
-    onChangeText,
-    secureTextEntry = false,
-    keyboardType = 'default',
-    style,
-    ...props
-}) => {
+const CustomTextInput = ({ value, onChangeText, placeholder, searchIcon ,inputStyle,containerStyle}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.searchContainer,{...containerStyle}]}>
+            {searchIcon && <Image
+                source={SEARCH_ICON}
+                style={styles.searchIcon}
+            />}
             <TextInput
-                style={[styles.input, style]}
-                placeholder={placeholder}
-                placeholderTextColor={BLACK}
+                style={[styles.input,inputStyle]}
+                placeholder={placeholder }
+                placeholderTextColor={GREY_DARK}
                 value={value}
                 onChangeText={onChangeText}
-                secureTextEntry={secureTextEntry}
-                keyboardType={keyboardType}
-                {...props}
             />
         </View>
     );
 };
 
 export default CustomTextInput;
-
 const styles = StyleSheet.create({
-    container: {
-        width: FULL_WIDTH - 60,
-        alignSelf: "center"
+    searchContainer: {
+        flexDirection: 'row',
+        backgroundColor: WHITE,
+        borderRadius: 25,
+        paddingHorizontal: 15,
+        height: 45,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
+        width: '90%',
+        alignSelf: "center",
+        alignItems:"center",
+        borderWidth:1,
+        borderRadius:5,
+        borderColor:LIGHT_GREY
+
     },
-    label: {
-        marginBottom: 6,
+    searchIcon: {
+        width: 18,
+        height: 18,
+        marginRight: 10,
+        tintColor: GREY_DARK,
     },
     input: {
-        width: '100%',
-        borderWidth: 0.5,
-        borderColor: BLACK,
-        borderRadius: 5,
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        fontSize: 15,
-        backgroundColor: WHITE,
-        height: 45
+        fontSize: 14,
     },
 });

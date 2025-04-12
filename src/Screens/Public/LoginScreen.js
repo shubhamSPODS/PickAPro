@@ -20,8 +20,10 @@ const LoginScreen = ({ navigation }) => {
       <BottomThemeImg source={THEME_IMG_2} />
       <View style={styles.inputContainer}>
         <CountryCodePicker />
-        <CustomTextInput placeholder={'Enter email or mobile number'} style={styles.textInput} />
+      <CustomTextInput placeholder={'Enter mobile number'} searchIcon containerStyle={{width:'70%'}}/>
+
       </View>
+
       <View style={styles.textContainer}>
         <Icon source={INFO} size={20} />
         <Typography size={13} style={styles.otpText}>You will receive an OTP code from Pick-A-Pro
@@ -40,13 +42,14 @@ export default LoginScreen
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
-    width: "80%",
-    justifyContent: "space-between",
-    gap: 10,
-    marginHorizontal: 15
+    width: "90%",
+    marginHorizontal: 15,
+    height:45,
+    gap:3,
+    
   },
   textInput: {
-    width: '65%',
+    width: '70%',
   },
   textContainer: {
     flexDirection: "row",
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignSelf: "center",
     borderRadius: 10,
-    marginVertical: 25,
+    marginVertical: 15,
     alignItems: "center",
     justifyContent: "center"
   },

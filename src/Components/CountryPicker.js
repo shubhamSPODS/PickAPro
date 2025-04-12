@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import CountryPicker from 'react-native-country-picker-modal';
 import Icon from './Icon';
 import { DOWN, THEME_IMG_1 } from './ImageAssets';
-import { BLACK, WHITE } from './Colors';
+import { BLACK, LIGHT_GREY, WHITE } from './Colors';
 
 const CountryCodePicker = ({ onSelectCountry }) => {
   const [countryCode, setCountryCode] = useState('US');
@@ -31,7 +31,6 @@ const CountryCodePicker = ({ onSelectCountry }) => {
         withCallingCode
         withCallingCodeButton
         onSelect={handleSelect}
-       
       />
       {/* <Icon source={DOWN} size={15} style={{marginLeft:5}}/> */}
     </View>
@@ -44,14 +43,16 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    width:"35%",
+    width:"30%",
     justifyContent:"center",
-    borderWidth:0.5,
+    borderWidth:1,
     borderRadius:5,
+    borderColor:LIGHT_GREY
     
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     marginRight: 8,
+    
   },
 });

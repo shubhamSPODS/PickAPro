@@ -8,6 +8,7 @@ import {
   Dimensions,
   SafeAreaView,
   Platform,
+  StatusBar,
 } from 'react-native';
 import { HAND_SHAKE, MAP_SEARCH, RIGHT, THEME_IMG_1, THEME_IMG_2 } from '../../Components/ImageAssets';
 import { BLACK, LIGHT_GREY, THEME_GREEN, THEME_ORANGE } from '../../Components/Colors';
@@ -40,6 +41,8 @@ const SelectUser = ({ navigation }) => {
   );
   return (
     <SafeAreaView style={styles.container}>
+              <StatusBar backgroundColor={THEME_ORANGE}/>
+      
       <Icon source={THEME_IMG_1} style={styles.blobTop} />
       <View style={styles.cardContainer}>
         {options.map(({ key, label, icon }) => (

@@ -9,6 +9,15 @@ export const DOWN = require('../Assets/images/Down.png');
 export const LOCATION_BG_THEME = require('../Assets/images/locationBgTheme.png');
 export const WOMEN = require('../Assets/images/women.png');
 export const APP_BG = require('../Assets/images/appBg.png');
+export const WALLET_BG = require('../Assets/images/walletBg.png');
+export const WALLET = require('../Assets/images/wallet.png');
+export const SEARCH_ICON = require('../Assets/images/search.png');
+export const NEXT_ICON = require('../Assets/images/next.png');
+export const PLUMBING = require('../Assets/images/plumbing.png');
+
+
+
+
 
 
 
