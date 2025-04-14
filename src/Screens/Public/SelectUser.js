@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     width: FULL_WIDTH,
     position: 'absolute',
     top: 0,
-    height:Platform.OS==='ios'? 350:310
+    height:Platform.OS==='ios'? 300:310
   },
   blobBottom: {
     width: FULL_WIDTH,

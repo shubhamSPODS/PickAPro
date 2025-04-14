@@ -3,19 +3,22 @@ import React from 'react';
 import { SEARCH_ICON } from './ImageAssets';
 import { GREY_DARK, LIGHT_GREY, THEME_GREEN, WHITE } from './Colors';
 
-const CustomTextInput = ({ value, onChangeText, placeholder, searchIcon ,inputStyle,containerStyle}) => {
+const CustomTextInput = ({onBlur, ref, value, onChangeText, placeholder, searchIcon, inputStyle, containerStyle, onFocus }) => {
     return (
-        <View style={[styles.searchContainer,{...containerStyle}]}>
+        <View style={[styles.searchContainer, { ...containerStyle }]}>
             {searchIcon && <Image
                 source={SEARCH_ICON}
                 style={styles.searchIcon}
             />}
             <TextInput
-                style={[styles.input,inputStyle]}
-                placeholder={placeholder }
+                ref={ref}
+                style={[styles.input, inputStyle]}
+                placeholder={placeholder}
                 placeholderTextColor={GREY_DARK}
                 value={value}
                 onChangeText={onChangeText}
+                onFocus={onFocus}
+                onBlur={onBlur}
             />
         </View>
     );
@@ -36,10 +39,10 @@ const styles = StyleSheet.create({
         elevation: 3,
         width: '90%',
         alignSelf: "center",
-        alignItems:"center",
-        borderWidth:1,
-        borderRadius:5,
-        borderColor:LIGHT_GREY
+        alignItems: "center",
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: LIGHT_GREY
 
     },
     searchIcon: {

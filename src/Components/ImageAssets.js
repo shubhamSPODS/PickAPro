@@ -14,6 +14,22 @@ export const WALLET = require('../Assets/images/wallet.png');
 export const SEARCH_ICON = require('../Assets/images/search.png');
 export const NEXT_ICON = require('../Assets/images/next.png');
 export const PLUMBING = require('../Assets/images/plumbing.png');
+export const BANNER = require('../Assets/images/banner.png');
+export const BANNER_1 = require('../Assets/images/banner1.png');
+export const BANNER_2 = require('../Assets/images/banner2.png');
+export const BANNER_3 = require('../Assets/images/banner3.png');
+export const SUCCESS = require('../Assets/images/success.png');
+export const STAR = require('../Assets/images/star.png');
+export const MAP_PIN_AREA = require('../Assets/images/MapPinArea.png');
+export const CHECK_CIRCLE = require('../Assets/images/CheckCircle.png');
+export const MONEY_IMG = require('../Assets/images/Money.png');
+export const FLAG = require('../Assets/images/flag.png');
+
+
+
+
+
+
 
 
 
