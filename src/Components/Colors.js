@@ -9,7 +9,9 @@ export const SHADE_ORANGE='#eb9555';
 export const SHADE_ORANGE_DARK ='#e16c15';
 export const SHADE_ORANGE_LIGHT='#f2be98';
 export const GREY_DARK = '#808080';
-export const SHADE_WHITE='#FEE7D5'
+export const SHADE_WHITE='#FEE7D5';
+export const SHADE_LAVENDAR='#e6dfeed4';
+
 
 
 
