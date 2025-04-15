@@ -50,7 +50,7 @@ const LocationAccess = ({navigation}) => {
         Geolocation.getCurrentPosition(
             position => {
                 console.log('Location:', position);
-                navigation.navigate('HomeScreen')
+                navigation.navigate('MainTabs')
               
             },
             error => {
@@ -80,7 +80,7 @@ const LocationAccess = ({navigation}) => {
                     </Typography>
                     <CommonButton title={'Allow location access'} style={styles.allowButton}  onPress={requestLocationPermission}/>
                     <CommonButton title={'Not Now'} textStyle={{color: '#333',}} backgroundColor={LIGHT_GREY} style={styles.notNowButton} onPress={()=>{
-                        navigation.navigate('HomeScreen')
+                        navigation.navigate('MainTabs')
                     }} />
                 </View>
             </ImageBackground>

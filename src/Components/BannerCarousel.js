@@ -23,7 +23,7 @@ const BannerCarousel = ({ images = [] }) => {
                 index={0}
                 pageSize={FULL_WIDTH-50}
             
-                
+            
             >
                 {images?.map((image, index) => renderPage(image, index))}
             </Carousel>
