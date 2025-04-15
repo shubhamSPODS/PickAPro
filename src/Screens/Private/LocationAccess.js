@@ -18,40 +18,50 @@ import CommonButton from '../../Components/CommonButton';
 import { request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 
-const LocationAccess = ({navigation}) => {
+const LocationAccess = ({ navigation }) => {
     const requestLocationPermission = async () => {
-        let permission =
-            Platform.OS === 'ios'
-                ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
-                : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-    
-        try {
-            const result = await request(permission);
-    
-            if (result === RESULTS.GRANTED) {
-                getCurrentLocation();
-            } else if (result === RESULTS.BLOCKED) {
-                Alert.alert(
-                    'Permission Blocked',
-                    'Please enable location permission from settings.'
-                );
-            } else {
-                Alert.alert(
-                    'Permission Denied',
-                    'Location access is needed to find nearby professionals.'
-                );
+        if (Platform.OS === 'ios') {
+            Geolocation.requestAuthorization('whenInUse').then(status => {
+                if (status === 'granted') {
+                    getCurrentLocation();
+                } else {
+                    Alert.alert(
+                        'Permission Denied',
+                        'Location access is needed to find nearby professionals.'
+                    );
+                }
+            }).catch(error => {
+                console.warn('iOS Geolocation permission error:', error);
+            });
+        } else {
+            const permission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+            try {
+                const result = await request(permission);
+
+                if (result === RESULTS.GRANTED) {
+                    getCurrentLocation();
+                } else if (result === RESULTS.BLOCKED) {
+                    Alert.alert(
+                        'Permission Blocked',
+                        'Please enable location permission from settings.'
+                    );
+                } else {
+                    Alert.alert(
+                        'Permission Denied',
+                        'Location access is needed to find nearby professionals.'
+                    );
+                }
+            } catch (error) {
+                console.warn('Android permission error:', error);
             }
-        } catch (error) {
-            console.warn('Permission error:', error);
         }
     };
-    
     const getCurrentLocation = () => {
         Geolocation.getCurrentPosition(
             position => {
                 console.log('Location:', position);
                 navigation.navigate('MainTabs')
-              
+
             },
             error => {
                 console.error(error);
@@ -75,11 +85,11 @@ const LocationAccess = ({navigation}) => {
                         source={WOMEN}
                         style={styles.avatar}
                     />
-                      <Typography style={styles.description}>
+                    <Typography style={styles.description}>
                         We need your location access to easily find Skillr professionals around you.
                     </Typography>
-                    <CommonButton title={'Allow location access'} style={styles.allowButton}  onPress={requestLocationPermission}/>
-                    <CommonButton title={'Not Now'} textStyle={{color: '#333',}} backgroundColor={LIGHT_GREY} style={styles.notNowButton} onPress={()=>{
+                    <CommonButton title={'Allow location access'} style={styles.allowButton} onPress={requestLocationPermission} />
+                    <CommonButton title={'Not Now'} textStyle={{ color: '#333', }} backgroundColor={LIGHT_GREY} style={styles.notNowButton} onPress={() => {
                         navigation.navigate('MainTabs')
                     }} />
                 </View>
@@ -92,7 +102,7 @@ const LocationAccess = ({navigation}) => {
 export default LocationAccess;
 
 const styles = StyleSheet.create({
-    contentBox:{
+    contentBox: {
         flex: 0.5, marginBottom: scale(80),
     },
     safeArea: {
@@ -107,12 +117,12 @@ const styles = StyleSheet.create({
         marginLeft: 15
     },
     description: {
-        width:"85%",
+        width: "85%",
         fontSize: 16,
         color: BLACK,
         fontFamily: MEDIUM,
         marginBottom: 20,
-        marginLeft:scale(30)
+        marginLeft: scale(30)
     },
     allowButton: {
         width: '85%',

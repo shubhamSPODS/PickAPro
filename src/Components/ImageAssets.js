@@ -24,6 +24,11 @@ export const MAP_PIN_AREA = require('../Assets/images/MapPinArea.png');
 export const CHECK_CIRCLE = require('../Assets/images/CheckCircle.png');
 export const MONEY_IMG = require('../Assets/images/Money.png');
 export const FLAG = require('../Assets/images/flag.png');
+export const HOME_ICON = require('../Assets/images/Home.png');
+export const PROFILE_ICON = require('../Assets/images/profile.png');
+export const CHAT_ICON = require('../Assets/images/chat.png');
+export const MENU_ICON = require('../Assets/images/menu.png');
+
 
 
 
