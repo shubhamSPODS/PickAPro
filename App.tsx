@@ -16,12 +16,9 @@ export const MyStatusBar = ({ backgroundColor, ...props }: any) => (
   </View>
 );
 const App = () => {
-  
-  
   return (
     <Provider store={store}>
       <NavigationContainer >
-    
      <MainNavigation/>
       </NavigationContainer>
       </Provider>

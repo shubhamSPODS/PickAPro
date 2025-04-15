@@ -41,7 +41,6 @@ const SelectUser = ({ navigation }) => {
   );
   return (
     <SafeAreaView style={styles.container}>
-              <StatusBar backgroundColor={THEME_ORANGE}/>
       
       <Icon source={THEME_IMG_1} style={styles.blobTop} />
       <View style={styles.cardContainer}>

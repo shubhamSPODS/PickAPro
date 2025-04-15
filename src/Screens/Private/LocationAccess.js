@@ -6,6 +6,7 @@ import {
     Image,
     Platform,
     PermissionsAndroid,
+    Alert
 } from 'react-native';
 import React from 'react';
 import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography';
@@ -19,37 +20,32 @@ import Geolocation from 'react-native-geolocation-service';
 
 const LocationAccess = ({navigation}) => {
     const requestLocationPermission = async () => {
-        if (Platform.OS === 'ios') {
-            Geolocation.requestAuthorization('whenInUse').then(status => {
-                if (status === 'granted') {
-                    getCurrentLocation();
-                } else {
-                    Alert.alert('Permission Denied', 'Location access is needed to find nearby professionals.');
-                }
-            });
-        } else {
-            try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    {
-                        title: 'Location Permission',
-                        message: 'App needs access to your location',
-                        buttonNeutral: 'Ask Me Later',
-                        buttonNegative: 'Cancel',
-                        buttonPositive: 'OK',
-                    }
+        let permission =
+            Platform.OS === 'ios'
+                ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+                : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    
+        try {
+            const result = await request(permission);
+    
+            if (result === RESULTS.GRANTED) {
+                getCurrentLocation();
+            } else if (result === RESULTS.BLOCKED) {
+                Alert.alert(
+                    'Permission Blocked',
+                    'Please enable location permission from settings.'
                 );
-                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                    getCurrentLocation();
-                } else {
-                    Alert.alert('Permission Denied', 'Location access is needed to find nearby professionals.');
-                }
-            } catch (err) {
-                console.warn(err);
+            } else {
+                Alert.alert(
+                    'Permission Denied',
+                    'Location access is needed to find nearby professionals.'
+                );
             }
+        } catch (error) {
+            console.warn('Permission error:', error);
         }
     };
-
+    
     const getCurrentLocation = () => {
         Geolocation.getCurrentPosition(
             position => {
@@ -83,7 +79,9 @@ const LocationAccess = ({navigation}) => {
                         We need your location access to easily find Skillr professionals around you.
                     </Typography>
                     <CommonButton title={'Allow location access'} style={styles.allowButton}  onPress={requestLocationPermission}/>
-                    <CommonButton title={'Not Now'} textStyle={{color: '#333',}} backgroundColor={LIGHT_GREY} style={styles.notNowButton} />
+                    <CommonButton title={'Not Now'} textStyle={{color: '#333',}} backgroundColor={LIGHT_GREY} style={styles.notNowButton} onPress={()=>{
+                        navigation.navigate('HomeScreen')
+                    }} />
                 </View>
             </ImageBackground>
 

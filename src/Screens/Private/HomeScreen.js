@@ -73,7 +73,7 @@ const HomeScreen = ({navigation}) => {
           </View>
 
           <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Popular Services</Typography>
-          {/* <BannerCarousel images={images} /> */}
+          <BannerCarousel images={images} />
         </LinearGradient>
 
         <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Handyman services</Typography>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   bannerImage: {
-    width: FULL_WIDTH - 50,
+    width: FULL_WIDTH - 55,
     height: 210,
     alignSelf: "center",
   },

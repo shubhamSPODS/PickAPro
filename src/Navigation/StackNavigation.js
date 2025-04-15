@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 
 export const MainNavigation = () => {
     const user = useSelector(store => store?.user?.user);
-
+  
     return (
         <View style={{ flex: 1 }}>
             <MyStatusBar 
