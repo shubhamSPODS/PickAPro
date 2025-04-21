@@ -28,6 +28,11 @@ export const HOME_ICON = require('../Assets/images/Home.png');
 export const PROFILE_ICON = require('../Assets/images/profile.png');
 export const CHAT_ICON = require('../Assets/images/chat.png');
 export const MENU_ICON = require('../Assets/images/menu.png');
+export const NAVIGATION_ARROW = require('../Assets/images/NavigationArrow.png');
+export const SELECTED_CHECK = require('../Assets/images/selectedCheck.png');
+
+
+
 
 
 

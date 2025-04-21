@@ -12,6 +12,8 @@ import { THEME_ORANGE, WHITE } from '../Components/Colors';
 import Listing from '../Screens/Private/Listing';
 import ListingQuestionary from '../Screens/Private/ListingQuestionary';
 import TabNavigation from './TabNavigation';
+import ConfirmHomeAddress from '../Screens/Private/ConfirmHomeAddress';
+import MapConfirmAddress from '../Screens/Private/MapConfirmAddress';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +45,10 @@ export const HomeStack = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="LocationAccess">
             <Stack.Screen name="LocationAccess" component={LocationAccess} />
+            <Stack.Screen name="ConfirmHomeAddress" component={ConfirmHomeAddress} />
+            <Stack.Screen name="MapConfirmAddress" component={MapConfirmAddress} />
+
+            
             <Stack.Screen name="MainTabs" component={TabNavigation} />
             <Stack.Screen name="ListingQuestionary" component={ListingQuestionary} />
 

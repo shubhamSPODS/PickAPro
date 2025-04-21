@@ -60,11 +60,11 @@ const LocationAccess = ({ navigation }) => {
         Geolocation.getCurrentPosition(
             position => {
                 console.log('Location:', position);
-                navigation.navigate('MainTabs')
+                navigation.navigate('ConfirmHomeAddress')
 
             },
             error => {
-                console.error(error);
+                console.error(error,'errorerror' );
                 Alert.alert('Error', 'Unable to get location. Make sure location services are enabled.');
             },
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }

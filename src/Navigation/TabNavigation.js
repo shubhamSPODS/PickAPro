@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: 20,
+        bottom:Platform.OS==='ios'? 20:10,
     },
     iconOuterCircle: {
         borderRadius: 0,
