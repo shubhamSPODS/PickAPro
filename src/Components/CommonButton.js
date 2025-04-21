@@ -33,7 +33,7 @@ export default CommonButton;
 const styles = StyleSheet.create({
     button: {
         width: FULL_WIDTH - 60,
-        paddingVertical: 14,
+        paddingVertical: 10,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',

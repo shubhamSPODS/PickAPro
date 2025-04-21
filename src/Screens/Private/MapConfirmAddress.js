@@ -2,12 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { BACK, MAP_PIN_AREA } from '../../Components/ImageAssets';
+import Header from '../../Components/Header';
+import Typography from '../../Components/Typography';
+import { BLACK } from '../../Components/Colors';
+import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
+import CommonButton from '../../Components/CommonButton';
 
 const { width } = Dimensions.get('window');
 
 const MapConfirmAddress = ({ navigation }) => {
   const region = {
-    latitude: 6.6018, // Ikeja
+    latitude: 6.6018, 
     longitude: 3.3515,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
@@ -15,16 +20,7 @@ const MapConfirmAddress = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Top Bar */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={BACK} style={styles.backIcon} />
-        </TouchableOpacity>
-        <Text style={styles.title}>Confirm your home address</Text>
-        <View style={{ width: 24 }} />
-      </View>
-
-      {/* Map */}
+      <Header title={'Confirm your home address'}/>
       <MapView
         style={styles.map}
         region={region}
@@ -39,22 +35,20 @@ const MapConfirmAddress = ({ navigation }) => {
         </Marker>
       </MapView>
 
-      {/* Address Box */}
       <View style={styles.addressBox}>
         <Image
           source={MAP_PIN_AREA}
           style={styles.addressIcon}
         />
         <View>
-          <Text style={styles.addressTitle}>Tisco Plaza House, Ikeja</Text>
-          <Text style={styles.addressSubtitle}>1234 Elm Street, Los Angeles, CA 90001, USA</Text>
+          <Typography size={14} fontFamily={SEMI_BOLD} color={BLACK}>Tisco Plaza House, Ikeja</Typography>
+          <Typography size={12} fontFamily={MEDIUM} color={BLACK}>1234 Elm Street, Los Angeles, CA 90001, USA</Typography>
         </View>
       </View>
-
-      {/* Bottom Button */}
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>...</Text>
-      </TouchableOpacity>
+  <CommonButton title={'Confirm Location'} style={styles.button} onPress={()=>{
+                    navigation.navigate('AdditionalInformation')
+                }}/>
+      
     </View>
   );
 };
@@ -66,31 +60,13 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  header: {
-    paddingTop: 50,
-    paddingBottom: 15,
-    paddingHorizontal: 20,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    zIndex: 10,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#000',
-  },
-  backIcon: {
-    width: 24,
-    height: 24,
-  },
+ 
   map: {
     flex: 1,
   },
   addressBox: {
     position: 'absolute',
-    top: 110,
+    top: 90,
     left: 20,
     right: 20,
     backgroundColor: '#fff',
@@ -110,11 +86,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 3,
   },
-  addressTitle: {
-    fontWeight: '600',
-    fontSize: 15,
-    color: '#000',
-  },
+
   addressSubtitle: {
     fontSize: 13,
     color: '#555',
@@ -128,15 +100,10 @@ const styles = StyleSheet.create({
     bottom: 30,
     left: 20,
     right: 20,
-    height: 55,
-    backgroundColor: '#005c38',
-    borderRadius: 40,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 6,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 20,
-  },
+ 
 });
