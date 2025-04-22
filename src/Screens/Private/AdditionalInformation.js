@@ -62,7 +62,7 @@ const AdditionalInformation = ({navigation}) => {
                 </ScrollView>
 
                 <CommonButton title={'Save changes'} style={styles.button} onPress={()=>{
-                    navigation.navigate('MainTabs')
+                    navigation.navigate('SavedAddress')
                 }}/>
             </ImageBackground>
         </SafeAreaView>

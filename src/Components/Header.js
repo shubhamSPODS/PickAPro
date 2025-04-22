@@ -2,13 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Typography, { FULL_WIDTH } from './Typography'
 import LinearGradient from 'react-native-linear-gradient'
-import { SHADE_ORANGE_DARK, SHADE_ORANGE_LIGHT } from './Colors'
+import { SHADE_ORANGE_DARK, SHADE_ORANGE_LIGHT, WHITE } from './Colors'
 import Icon from './Icon'
-import { BACK } from './ImageAssets'
-import { SEMI_BOLD } from './AppFonts'
+import { BACK, MAP_PIN_AREA } from './ImageAssets'
+import { MEDIUM, SEMI_BOLD } from './AppFonts'
 import { useNavigation } from '@react-navigation/native'
 
-const Header = ({ title }) => {
+const Header = ({ title, addLocationBtn, emptySpace = true }) => {
     const navigation = useNavigation()
     return (
         <LinearGradient colors={[SHADE_ORANGE_DARK, SHADE_ORANGE_LIGHT]} style={styles.container}>
@@ -19,7 +19,16 @@ const Header = ({ title }) => {
                     <Icon source={BACK} size={20} />
                 </TouchableOpacity>
                 <Typography fontFamily={SEMI_BOLD}>{title}</Typography>
-                <View style={styles.placeholder} />
+                {addLocationBtn && <TouchableOpacity activeOpacity={0.9} style={{
+                    padding: 10, gap: 10,
+                    backgroundColor: WHITE, borderRadius: 25, flexDirection: "row", justifyContent: 'center',
+                }} onPress={() => {
+                }}>
+                    <Icon source={MAP_PIN_AREA} size={20} />
+                    <Typography size={13} fontFamily={MEDIUM}>Add</Typography>
+                </TouchableOpacity>}
+
+                {emptySpace && <View style={styles.placeholder} />}
             </View>
         </LinearGradient>
     )

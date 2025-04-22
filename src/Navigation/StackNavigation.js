@@ -15,6 +15,7 @@ import TabNavigation from './TabNavigation';
 import ConfirmHomeAddress from '../Screens/Private/ConfirmHomeAddress';
 import MapConfirmAddress from '../Screens/Private/MapConfirmAddress';
 import AdditionalInformation from '../Screens/Private/AdditionalInformation';
+import SavedAddress from '../Screens/Private/SavedAddress';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,8 @@ export const HomeStack = () => {
             <Stack.Screen name="ConfirmHomeAddress" component={ConfirmHomeAddress} />
             <Stack.Screen name="MapConfirmAddress" component={MapConfirmAddress} />
             <Stack.Screen name="AdditionalInformation" component={AdditionalInformation} />
+            <Stack.Screen name="SavedAddress" component={SavedAddress} />
+
             <Stack.Screen name="MainTabs" component={TabNavigation} />
             <Stack.Screen name="ListingQuestionary" component={ListingQuestionary} />
 
