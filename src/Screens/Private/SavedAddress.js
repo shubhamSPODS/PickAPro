@@ -23,7 +23,7 @@ const addressData = [
     }
 ];
 
-const SavedAddress = () => {
+const SavedAddress = ({ navigation }) => {
     const [selectedId, setSelectedId] = useState('2');
 
     const _RenderItem = ({ item }) => {
@@ -37,7 +37,7 @@ const SavedAddress = () => {
                 ]}
             >
                 <View style={styles.row}>
-                    <Icon source={HOME_ICON} tintColor={GREY_DARK} size={15}/>
+                    <Icon source={HOME_ICON} tintColor={GREY_DARK} size={15} />
                     <Typography style={styles.label}>{item.label}</Typography>
                 </View>
                 <Typography style={styles.address}>{item.addressLine}</Typography>
@@ -45,9 +45,9 @@ const SavedAddress = () => {
 
                 <View style={styles.radioContainer}>
                     {isSelected ? (
-                      <Icon source={CHECK_CIRCLE} size={20}/>
+                        <Icon source={CHECK_CIRCLE} size={20} />
                     ) : (
-                        <Icon source={CHECK_CIRCLE} size={20}/>
+                        <Icon source={CHECK_CIRCLE} size={20} />
                     )}
                 </View>
             </TouchableOpacity>
@@ -65,7 +65,9 @@ const SavedAddress = () => {
                 contentContainerStyle={{ paddingTop: 10, paddingBottom: 100 }}
             />
 
-          <CommonButton title={'Select Address'} style={{bottom:20}}/>
+            <CommonButton title={'Select Address'} style={{ bottom: 20 }} onPress={() => {
+                navigation.navigate('MainTabs')
+            }} />
         </SafeAreaView>
     );
 };
@@ -93,8 +95,8 @@ const styles = StyleSheet.create({
     },
     label: {
         marginLeft: 5,
-        fontSize:13,
-        fontFamily:SEMI_BOLD
+        fontSize: 13,
+        fontFamily: SEMI_BOLD
     },
     address: {
         fontSize: 12,
@@ -110,6 +112,6 @@ const styles = StyleSheet.create({
         top: 15,
         right: 15,
     },
-    
-   
+
+
 });

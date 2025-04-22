@@ -33,6 +33,12 @@ export const SELECTED_CHECK = require('../Assets/images/selectedCheck.png');
 export const GALLARY = require('../Assets/images/picture.png');
 export const CAMERA = require('../Assets/images/camera.png');
 export const CLOSE = require('../Assets/images/close.png');
+export const GUEST = require('../Assets/images/Guest.png');
+export const PROVIDER = require('../Assets/images/Provider.png');
+export const SEEKER = require('../Assets/images/Seeker.png');
+export const BOTTOM_IMG = require('../Assets/images/BottomImg.png');
+
+
 
 
 

@@ -1,138 +1,92 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
-  Dimensions,
   SafeAreaView,
-  Platform,
-  StatusBar,
+  Alert
 } from 'react-native';
-import { HAND_SHAKE, MAP_SEARCH, RIGHT, THEME_IMG_1, THEME_IMG_2 } from '../../Components/ImageAssets';
-import { BLACK, LIGHT_GREY, THEME_GREEN, THEME_ORANGE } from '../../Components/Colors';
-import { useFocusEffect } from '@react-navigation/native';
+import { APP_BG, BOTTOM_IMG, GUEST, PROVIDER, SEEKER } from '../../Components/ImageAssets';
 import Icon from '../../Components/Icon';
-import { FULL_WIDTH } from '../../Components/Typography';
+import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography';
+import { BLACK, WHITE } from '../../Components/Colors';
+import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
 
 const SelectUser = ({ navigation }) => {
-  const [selected, setSelected] = useState('');
   const handleSelect = (userType) => {
-    setSelected(userType);
-    navigation.navigate('LoginScreen');
+    switch (userType) {
+      case 'Provider':
+        navigation.navigate('LoginScreen');
+        break;
+      case 'Seeker':
+      case 'Guest':
+        Alert.alert('Coming Soon');
+        break;
+      default:
+        break;
+    }
   };
-  const options = [
-    {
-      key: 'seeker',
-      label: 'Service Seeker',
-      icon: MAP_SEARCH,
-    },
-    {
-      key: 'provider',
-      label: 'Service Providers',
-      icon: HAND_SHAKE,
-    },
-  ];
-  useFocusEffect(
-    useCallback(() => {
-      setSelected('');
-    }, [])
-  );
+
   return (
     <SafeAreaView style={styles.container}>
-      
-      <Icon source={THEME_IMG_1} style={styles.blobTop} />
-      <View style={styles.cardContainer}>
-        {options.map(({ key, label, icon }) => (
-          <TouchableOpacity
-            key={key}
-            style={[styles.card, selected === key && styles.cardSelected]}
-            onPress={() => handleSelect(key)}
-          >
-            <Image source={icon} style={styles.icon} />
-            <Text style={styles.cardText}>{label}</Text>
-            <View style={styles.checkbox}>
-              {selected === key && <Icon source={RIGHT} size={10} style={styles.rightIcon} />}
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-      <Icon source={THEME_IMG_2} style={styles.blobBottom} />
+      <Typography
+        size={20}
+        color={BLACK}
+        fontFamily={MEDIUM}
+        style={styles.titleText}
+      >
+        Choose{'\n'}
+        <Typography size={22} fontFamily={SEMI_BOLD}>what you need</Typography>
+      </Typography>
+
+      <TouchableOpacity style={styles.providerBtn} onPress={() => handleSelect('Provider')}>
+        <Icon source={PROVIDER} size={180} />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.seekerBtn} onPress={() => handleSelect('Seeker')}>
+        <Icon source={SEEKER} size={180} />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.guestBtn} onPress={() => handleSelect('Guest')}>
+        <Icon source={GUEST} size={180} />
+      </TouchableOpacity>
+
+      <Image source={BOTTOM_IMG} style={styles.bottomImage} />
     </SafeAreaView>
   );
 };
 
 export default SelectUser;
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: WHITE,
   },
-  blobTop: {
-    width: FULL_WIDTH,
-    position: 'absolute',
-    top: 0,
-    height:Platform.OS==='ios'? 300:310
+  titleText: {
+    marginLeft: 22,
+    marginTop: 20,
   },
-  blobBottom: {
-    width: FULL_WIDTH,
+  providerBtn: {
+    alignSelf: 'flex-end',
+    marginRight: 20,
+  },
+  seekerBtn: {
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+  },
+  guestBtn: {
+    alignItems: 'flex-end',
+    marginLeft: 15,
+  },
+  bottomImage: {
     position: 'absolute',
     bottom: 0,
-    height: Platform.OS==='ios'? 350:310
-
+    width: FULL_WIDTH,
+    height: 250,
+    alignSelf: 'center',
+    resizeMode: 'cover',
   },
-  cardContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    gap: 20,
-  },
-  card: {
-    width: 150,
-    height: 150,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    padding: 10,
-    borderColor: LIGHT_GREY,
-    borderWidth: 1,
-
-  },
-  cardSelected: {
-    borderWidth: 2,
-    borderColor: THEME_ORANGE,
-  },
-  icon: {
-    resizeMode: "contain",
-    width: 45,
-    height: 45,
-    marginBottom: 10,
-  },
-  cardText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  checkbox: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    width: 16,
-    height: 16,
-    borderWidth: 1,
-    borderColor: BLACK,
-    borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  rightIcon: {
-
-    tintColor: THEME_GREEN
-  }
-
 });
