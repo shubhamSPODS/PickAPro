@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'reac
 import Header from '../../Components/Header';
 import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography';
 import Icon from '../../Components/Icon';
-import { FLAG, NEXT_ICON, SUCCESS, WOMEN } from '../../Components/ImageAssets';
+import { CAMERA, FLAG, NEXT_ICON, SUCCESS, WOMEN } from '../../Components/ImageAssets';
 import { BLACK, DARK_GREEN, GREY_DARK, SHADE_LAVENDAR, WHITE } from '../../Components/Colors';
 import CustomTextInput from '../../Components/CustomTextInput';
 import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
@@ -48,14 +48,16 @@ const ListingQuestionary = () => {
     const handleInputChange = (text, id) => {
         setAnswers(prev => ({ ...prev, [id]: text }));
     };
-    const handleImagePicked = (images) => {
-        console.log(images, '==images');
-
-        if (selectedImageQuestionId) {
-            setAnswers(prev => ({ ...prev, [selectedImageQuestionId]: images }));
-        }
+    const handleImagePicked = (newImages) => {
+        setAnswers(prev => {
+            const existingImages = prev[selectedImageQuestionId] || [];
+            return {
+                ...prev,
+                [selectedImageQuestionId]: [...existingImages, ...newImages]
+            };
+        });
     };
-
+    
     const renderQuestion = ({ item }) => {
         return (
             <View style={styles.questionContainer}>
@@ -64,32 +66,53 @@ const ListingQuestionary = () => {
                 </Typography>
 
                 {item.type === 'image' ? (
-                    <TouchableOpacity
-                        style={[{
-                            marginTop: 10,
-                            width: 80,
-                            height: 80,
-                            borderWidth: 1,
-                            borderColor: GREY_DARK,
-                            borderStyle: 'dotted',
-                            alignItems: "center",
-                            justifyContent: 'center',
-                            borderRadius: 5
-                        }]}
-                        onPress={() => {
-                            setSelectedImageQuestionId(item.id);
-                            setImageModalVisible(true);
-                        }}>
-                        {answers[item.id]?.[0]?.path ? (
-                            <Icon
-                                source={{ uri: answers[item.id][0].path }}
-                                style={{ width: 80, height: 80, borderRadius: 5 }}
-                                resizeMode="cover"
-                            />
-                        ) : (
-                            <Icon source={WOMEN} size={50} />
-                        )}
-                    </TouchableOpacity>
+                    <View>
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 10 }}>
+                        <TouchableOpacity
+                            style={{
+                                width: 80,
+                                height: 80,
+                                borderWidth: 1,
+                                borderColor: GREY_DARK,
+                                borderStyle: 'dotted',
+                                alignItems: "center",
+                                justifyContent: 'center',
+                                borderRadius: 5
+                            }}
+                            onPress={() => {
+                                setSelectedImageQuestionId(item.id);
+                                setImageModalVisible(true);
+                            }}
+                        >
+                            <Icon source={CAMERA} size={25} />
+
+                              <Typography size={10} fontFamily={MEDIUM} style={{marginTop:10}} >Add Photo</Typography>
+                        </TouchableOpacity>
+                            {(answers[item.id] || []).map((img, index) => (
+                                <>
+                                <View key={index} style={{
+                                    width: 80,
+                                    height: 80,
+                                    borderRadius: 5,
+                                    borderWidth: 1,
+                                    borderColor: GREY_DARK,
+                                    overflow: 'hidden',
+                                    borderStyle: 'dotted',
+                                }}>
+                                    <Icon
+                                        source={{ uri: img.path }}
+                                        style={{ width: '100%', height: '100%' }}
+                                        resizeMode="cover"
+                                    />
+                                </View>
+                               
+                                </>
+                            ))}
+                        </View>
+
+                   
+                     
+                    </View>
                 ) : (
                     <CustomTextInput
                         inputStyle={{ width: '100%' }}

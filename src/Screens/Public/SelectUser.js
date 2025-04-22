@@ -28,7 +28,6 @@ const SelectUser = ({ navigation }) => {
         break;
     }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <Typography

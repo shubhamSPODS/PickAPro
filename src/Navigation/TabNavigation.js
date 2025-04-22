@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../Screens/Private/HomeScreen';
 import Listing from '../Screens/Private/Listing';
 import Message from '../Screens/Private/Message';
-import Profile from '../Screens/Private/Profile';
 import Icon from '../Components/Icon';
 import { CHAT_ICON, HOME_ICON, MENU_ICON, PROFILE_ICON } from '../Components/ImageAssets';
 import { BLACK, GREY_DARK, THEME_ORANGE, WHITE } from '../Components/Colors';
 import Typography from '../Components/Typography';
 import { MEDIUM } from '../Components/AppFonts';
+import ProfileScreen from '../Screens/Private/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +36,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
                     case 'Message':
                         iconSource = CHAT_ICON;
                         break;
-                    case 'Profile':
+                    case 'ProfileScreen':
                         iconSource = PROFILE_ICON;
                         break;
                     default:
@@ -87,7 +87,7 @@ const TabNavigation = () => {
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Listing" component={Listing} />
             <Tab.Screen name="Message" component={Message} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
         </Tab.Navigator>
     );
 };
