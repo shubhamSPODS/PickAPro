@@ -1,12 +1,13 @@
 
 
 import { Platform, SafeAreaView, StatusBar, StyleSheet, View,  } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Provider, useSelector,   } from 'react-redux'
 import store from './src/Redux/Store'
 import { NavigationContainer } from '@react-navigation/native'
 import {  MainNavigation } from './src/Navigation/StackNavigation'
 import { THEME_ORANGE, WHITE } from './src/Components/Colors'
+import SplashScreen from 'react-native-splash-screen'
 
 export const MyStatusBar = ({ backgroundColor, ...props }: any) => (
   <View style={{ height: StatusBar.currentHeight, backgroundColor }}>
@@ -16,6 +17,9 @@ export const MyStatusBar = ({ backgroundColor, ...props }: any) => (
   </View>
 );
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide(); // Hide when app is ready
+  }, []);
   return (
     <Provider store={store}>
       <NavigationContainer >
