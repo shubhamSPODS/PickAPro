@@ -30,6 +30,11 @@ export const CHAT_ICON = require('../Assets/images/chat.png');
 export const MENU_ICON = require('../Assets/images/menu.png');
 export const NAVIGATION_ARROW = require('../Assets/images/NavigationArrow.png');
 export const SELECTED_CHECK = require('../Assets/images/selectedCheck.png');
+export const GALLARY = require('../Assets/images/picture.png');
+export const CAMERA = require('../Assets/images/camera.png');
+export const CLOSE = require('../Assets/images/close.png');
+
+
 
 
 

@@ -1,48 +1,61 @@
-import { useRef, useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Header from '../../Components/Header';
 import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography';
 import Icon from '../../Components/Icon';
-import { FLAG, NEXT_ICON, SUCCESS } from '../../Components/ImageAssets';
-import { BLACK, DARK_GREEN, GREY_DARK, LIGHT_GREY, SHADE_LAVENDAR, WHITE } from '../../Components/Colors';
+import { FLAG, NEXT_ICON, SUCCESS, WOMEN } from '../../Components/ImageAssets';
+import { BLACK, DARK_GREEN, GREY_DARK, SHADE_LAVENDAR, WHITE } from '../../Components/Colors';
 import CustomTextInput from '../../Components/CustomTextInput';
 import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
-import RBSheet from 'react-native-raw-bottom-sheet';
 import SheetView from '../../Components/SheetView';
+import ImageUploadModal from '../../Components/ImageUploadModal';
 
-const questions = [
-    {
-        id: '1',
-        question: 'What type of Plumbing service do you need?',
-        type: 'dropdown',
-        required: true,
-        options: [
-            { label: 'Leak Repair', value: 'leak' },
-            { label: 'Installation', value: 'install' },
-            { label: 'Inspection', value: 'inspect' },
-        ],
-    },
-    {
-        id: '2',
-        question: 'Do you need emergency service?',
-        type: 'dropdown',
-        required: true,
-        options: [
-            { label: 'Yes', value: 'yes' },
-            { label: 'No', value: 'no' },
-        ],
-    },
-    {
-        id: '3',
-        question: 'Any Additional Notes for the Plumbing?',
-        type: 'text',
-        required: false,
-        textBox: 'textBox'
-    },
-];
+const QUESTIONS_PER_STEP = 3;
 
 const ListingQuestionary = () => {
     const refRBSheet = useRef();
+    const [questionsData, setQuestionsData] = useState([]);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [answers, setAnswers] = useState({});
+    const [imageModalVisible, setImageModalVisible] = useState(false);
+    const [selectedImageQuestionId, setSelectedImageQuestionId] = useState(null);
+
+
+    useEffect(() => {
+        fetchQuestions();
+    }, []);
+
+    const fetchQuestions = async () => {
+        const mockApiQuestions = [
+            { id: '1', question: 'What type of service do you need?', type: 'text', required: true },
+            { id: '2', question: 'When do you need this service?', type: 'text', required: true },
+            { id: '3', question: 'Do you have any special instructions?', type: 'text', required: false },
+            { id: '4', question: 'Is this an urgent request?', type: 'text', required: true },
+            { id: '5', question: 'Do you require follow-up visits?', type: 'text', required: false },
+            { id: '6', question: 'Any parking instructions?', type: 'text', required: false },
+            { id: '7', question: 'Do you prefer morning or evening slots?', type: 'text', required: true },
+            { id: '8', question: 'Would you like to get notified for offers?', type: 'text', required: false },
+            { id: '9', question: 'Upload related images', type: 'image', required: false }
+        ];
+        setQuestionsData(mockApiQuestions);
+    };
+
+    const stepQuestions = questionsData.slice(
+        currentStep * QUESTIONS_PER_STEP,
+        (currentStep + 1) * QUESTIONS_PER_STEP
+    );
+
+    const handleInputChange = (text, id) => {
+        setAnswers(prev => ({ ...prev, [id]: text }));
+    };
+    const handleImagePicked = (images) => {
+        console.log(images, '==images');
+
+        if (selectedImageQuestionId) {
+            setAnswers(prev => ({ ...prev, [selectedImageQuestionId]: images }));
+        }
+    };
+
     const renderQuestion = ({ item }) => {
         return (
             <View style={styles.questionContainer}>
@@ -50,55 +63,94 @@ const ListingQuestionary = () => {
                     {item.question} {item.required && <Typography style={styles.requiredMark}>*</Typography>}
                 </Typography>
 
-                <CustomTextInput
-                    inputStyle={{ width: '100%' }}
-                    containerStyle={
-                        {
-                            width: FULL_WIDTH - 45,
-                            minHeight: item?.textBox ? 100 : 0
-                        }}
-                />
+                {item.type === 'image' ? (
+                    <TouchableOpacity
+                        style={[{
+                            marginTop: 10,
+                            width: 80,
+                            height: 80,
+                            borderWidth: 1,
+                            borderColor: GREY_DARK,
+                            borderStyle: 'dotted',
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            borderRadius: 5
+                        }]}
+                        onPress={() => {
+                            setSelectedImageQuestionId(item.id);
+                            setImageModalVisible(true);
+                        }}>
+                        {answers[item.id]?.[0]?.path ? (
+                            <Icon
+                                source={{ uri: answers[item.id][0].path }}
+                                style={{ width: 80, height: 80, borderRadius: 5 }}
+                                resizeMode="cover"
+                            />
+                        ) : (
+                            <Icon source={WOMEN} size={50} />
+                        )}
+                    </TouchableOpacity>
+                ) : (
+                    <CustomTextInput
+                        inputStyle={{ width: '100%' }}
+                        containerStyle={{ width: FULL_WIDTH - 45, minHeight: 0 }}
+                        value={answers[item.id] || ''}
+                        onChangeText={(text) => handleInputChange(text, item.id)}
+                    />
+                )}
             </View>
         );
     };
+
+
+    const handleNextStep = () => {
+        const nextStep = currentStep + 1;
+        if (nextStep * QUESTIONS_PER_STEP < questionsData.length) {
+            setCurrentStep(nextStep);
+        } else {
+            refRBSheet.current.open();
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={'Indoor  Plumbing'} />
-            <SheetView
-                ref={refRBSheet}
-            >
-                 <View style={styles.content}>
-                <Text style={styles.title}>Summary</Text>
+            <Header title={'Indoor Plumbing'} />
+            <ImageUploadModal
+                visible={imageModalVisible}
+                onClose={() => setImageModalVisible(false)}
+                onImagePicked={handleImagePicked}
 
-                <View style={styles.section}>
-                    <Typography size={15} fontFamily={SEMI_BOLD}>Indoor Plumbing</Typography>
-                    <Typography size={15} fontFamily={MEDIUM}>$12</Typography>
-                </View>
+            />
 
-                <View style={styles.paymentCard}>
-                    <View>
-                    <Typography color={BLACK}>Payment Summary</Typography>
-                    <Typography style={{marginTop:10}} size={12} color={GREY_DARK}>Total (inc. Vat)</Typography>
+            <SheetView ref={refRBSheet}>
+                <View style={styles.content}>
+                    <Typography style={styles.title}>Summary</Typography>
+                    <View style={styles.section}>
+                        <Typography size={15} fontFamily={SEMI_BOLD}>Indoor Plumbing</Typography>
+                        <Typography size={15} fontFamily={MEDIUM}>$12</Typography>
                     </View>
-                    <Typography >$12</Typography>
-                </View>
-
-                <View style={styles.footer}>
-                    <View>
-                    <Typography style={styles.totalLabel}>Total fee</Typography>
-                    <Typography style={styles.totalPrice}>$12</Typography>
+                    <View style={styles.paymentCard}>
+                        <View>
+                            <Typography color={BLACK}>Payment Summary</Typography>
+                            <Typography style={{ marginTop: 10 }} size={12} color={GREY_DARK}>Total (inc. Vat)</Typography>
+                        </View>
+                        <Typography>$12</Typography>
                     </View>
-
-                    <TouchableOpacity style={styles.payButton} onPress={()=>{}}>
-                        <Typography style={styles.payButtonText}>PAYMENT</Typography>
-                    </TouchableOpacity>
+                    <View style={styles.footer}>
+                        <View>
+                            <Typography style={styles.totalLabel}>Total fee</Typography>
+                            <Typography style={styles.totalPrice}>$12</Typography>
+                        </View>
+                        <TouchableOpacity style={styles.payButton} onPress={() => { }}>
+                            <Typography style={styles.payButtonText}>PAYMENT</Typography>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-                </SheetView>
+            </SheetView>
+
             <View style={styles.providerCard}>
                 <View style={styles.providerInfo}>
                     <Icon source={FLAG} size={50} style={styles.logo} />
-
                     <View style={styles.providerTextWrapper}>
                         <View style={styles.nameRow}>
                             <Typography size={14} fontFamily={SEMI_BOLD}>Lan Plumbing</Typography>
@@ -107,7 +159,6 @@ const ListingQuestionary = () => {
                         <Typography style={styles.rating}>⭐ 4.7 (115)</Typography>
                     </View>
                 </View>
-
                 <TouchableOpacity style={styles.profileLink}>
                     <Typography size={12} color={BLACK}>View Profile</Typography>
                     <Icon source={NEXT_ICON} size={16} />
@@ -115,9 +166,10 @@ const ListingQuestionary = () => {
             </View>
 
             <FlatList
-                data={questions}
+                data={stepQuestions}
                 renderItem={renderQuestion}
                 keyExtractor={(item) => item.id}
+                ListEmptyComponent={<Typography style={{ textAlign: 'center', marginTop: 20 }}>Loading Questions...</Typography>}
             />
 
             <View style={styles.bottomContent}>
@@ -126,9 +178,19 @@ const ListingQuestionary = () => {
                     <Typography style={styles.totalFee}>₹ 650</Typography>
                 </View>
 
-                <TouchableOpacity style={styles.nextButton} onPress={() => { refRBSheet.current.open() }}>
-                    <Typography color={WHITE} fontFamily={SEMI_BOLD}>Next</Typography>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    {currentStep > 0 && (
+                        <TouchableOpacity style={styles.backButton} onPress={() => setCurrentStep(currentStep - 1)}>
+                            <Typography color={DARK_GREEN} fontFamily={SEMI_BOLD}>Back</Typography>
+                        </TouchableOpacity>
+                    )}
+
+                    <TouchableOpacity style={styles.nextButton} onPress={handleNextStep}>
+                        <Typography color={WHITE} fontFamily={SEMI_BOLD}>
+                            {((currentStep + 1) * QUESTIONS_PER_STEP) >= questionsData.length ? 'Finish' : 'Next'}
+                        </Typography>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -137,6 +199,9 @@ const ListingQuestionary = () => {
 export default ListingQuestionary;
 
 const styles = StyleSheet.create({
+    backButton: {
+        marginRight: 20,
+    },
     container: {
         flex: 1,
     },
@@ -165,7 +230,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-
     successIcon: {
         marginLeft: 5,
     },
@@ -187,13 +251,6 @@ const styles = StyleSheet.create({
     requiredMark: {
         color: 'red',
     },
-    inputBox: {
-        width: FULL_WIDTH - 40,
-    },
-    textArea: {
-        minHeight: 100,
-    },
-   
     totalFee: {
         fontWeight: '600',
         fontSize: 18,
@@ -219,37 +276,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 20,
     },
-    serviceTitle: {
-        fontSize: 16,
-        fontWeight: '600',
-    },
-    servicePrice: {
-        fontSize: 16,
-        fontWeight: '600',
-    },
     paymentCard: {
         backgroundColor: SHADE_LAVENDAR,
         padding: 15,
         borderRadius: 10,
         marginBottom: 20,
-        flexDirection:"row",
-        justifyContent:"space-between"
-    },
-    cardTitle: {
-        fontSize: 14,
-        fontWeight: '500',
-        marginBottom: 8,
-        color: '#666',
-    },
-    cardAmount: {
-        fontSize: 12,
-        color: '#999',
-    },
-    cardValue: {
-        fontSize: 16,
-        fontWeight: '600',
-        textAlign: 'right',
-        marginTop: -18,
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     footer: {
         flexDirection: 'row',
@@ -274,12 +307,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
     },
-    bottomContent:{
+    bottomContent: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        minHeight:100,
+        minHeight: 100,
         backgroundColor: WHITE,
         flexDirection: 'row',
         justifyContent: 'space-between',

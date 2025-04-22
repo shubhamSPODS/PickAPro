@@ -12,6 +12,7 @@ import ImgBackground from '../../Components/ImgBackground'
 import { GREY_DARK, LIGHT_GREY } from '../../Components/Colors'
 import Icon from '../../Components/Icon'
 import CommonButton from '../../Components/CommonButton'
+import AnimatedRbSheet from '../../Components/AnimatedRbSheet'
 
 const ConfirmHomeAddress = ({navigation}) => {
     return (
@@ -41,7 +42,7 @@ const ConfirmHomeAddress = ({navigation}) => {
                     </Typography>
                 </View>
 
-                <CommonButton title={'Finish'} />
+                <CommonButton title={'Finish'}  />
             </ImgBackground>
         </SafeAreaView>
     )

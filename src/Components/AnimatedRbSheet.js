@@ -4,7 +4,7 @@ import { FULL_HEIGHT } from './Typography';
 
 const { height } = Dimensions.get('window');
 
-const AnimatedRbSheet = ({ visible, onClose, children, sheetHeight = FULL_HEIGHT }) => {
+const AnimatedRbSheet = ({ visible, onClose, children, sheetHeight = FULL_HEIGHT ,sheetStyle}) => {
   const slideAnim = useRef(new Animated.Value(height)).current;
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const AnimatedRbSheet = ({ visible, onClose, children, sheetHeight = FULL_HEIGHT
       onRequestClose={onClose}
     >
       <TouchableWithoutFeedback onPress={onClose}>
-        <View style={styles.overlay}>
+        <View style={[styles.overlay,{...sheetStyle}]}>
           <TouchableWithoutFeedback>
             <Animated.View style={[styles.sheetContainer, { top: slideAnim, height: sheetHeight }]}>
               {children}
