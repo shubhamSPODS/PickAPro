@@ -36,7 +36,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
                     case 'Message':
                         iconSource = CHAT_ICON;
                         break;
-                    case 'ProfileScreen':
+                    case 'Profile':
                         iconSource = PROFILE_ICON;
                         break;
                     default:
@@ -87,7 +87,7 @@ const TabNavigation = () => {
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Listing" component={Listing} />
             <Tab.Screen name="Message" component={Message} />
-            <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     );
 };

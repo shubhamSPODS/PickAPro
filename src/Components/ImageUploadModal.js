@@ -10,19 +10,13 @@ import { scale } from 'react-native-size-matters';
 import { MEDIUM, SEMI_BOLD } from './AppFonts';
 
 const ImageUploadModal = ({ visible, onClose, onImagePicked }) => {
-
     const openCamera = async () => {
-        const granted = await requestCameraPermission();
-        if (!granted) {
-            alert('Camera permission is required!');
-            return;
-        }
         try {
             const image = await ImagePicker.openCamera({
                 width: 300,
                 height: 400,
                 cropping: true,
-                multiple: true
+                multiple: false
             });
             onImagePicked(image);
             onClose();
@@ -31,7 +25,6 @@ const ImageUploadModal = ({ visible, onClose, onImagePicked }) => {
             onClose();
         }
     };
-
     const openGallery = async () => {
         try {
             const images = await ImagePicker.openPicker({

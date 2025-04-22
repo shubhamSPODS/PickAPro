@@ -7,6 +7,7 @@ import Typography from '../../Components/Typography';
 import { BLACK } from '../../Components/Colors';
 import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
 import CommonButton from '../../Components/CommonButton';
+import { scale } from 'react-native-size-matters';
 
 const { width } = Dimensions.get('window');
 
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   addressBox: {
     position: 'absolute',
-    top: 90,
+    top: scale(85),
     left: 20,
     right: 20,
     backgroundColor: '#fff',

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     marginLeft: 22,
-    marginTop: 20,
+    marginTop: 30,
   },
   providerBtn: {
     alignSelf: 'flex-end',

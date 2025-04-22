@@ -20,7 +20,7 @@ const ConfirmHomeAddress = ({navigation}) => {
             <ImgBackground>
                 <Header title={'Confirm your address'} />
 
-                <TouchableOpacity style={styles.addressBox} onPress={()=>{navigation.navigate('MapConfirmAddress')}}>
+                <TouchableOpacity style={styles.addressBox} >
                     <Typography size={14} color={GREY_DARK}>Address</Typography>
                     <Icon source={NAVIGATION_ARROW} size={20} />
                 </TouchableOpacity>
@@ -42,7 +42,7 @@ const ConfirmHomeAddress = ({navigation}) => {
                     </Typography>
                 </View>
 
-                <CommonButton title={'Finish'}  />
+                <CommonButton title={'Finish'}  onPress={()=>{navigation.navigate('MapConfirmAddress')}}/>
             </ImgBackground>
         </SafeAreaView>
     )

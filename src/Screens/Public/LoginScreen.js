@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginHorizontal: 15,
     height:45,
-    gap:3,
+    gap:5,
     
   },
   textInput: {
