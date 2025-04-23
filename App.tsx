@@ -9,16 +9,23 @@ import {  MainNavigation } from './src/Navigation/StackNavigation'
 import { THEME_ORANGE, WHITE } from './src/Components/Colors'
 import SplashScreen from 'react-native-splash-screen'
 
-export const MyStatusBar = ({ backgroundColor, ...props }: any) => (
-  <View style={{ height: StatusBar.currentHeight, backgroundColor }}>
-    <SafeAreaView>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </SafeAreaView>
-  </View>
-);
+// export const MyStatusBar = ({ backgroundColor, ...props }: any) => {
+//   const height = Platform.OS === 'android'
+//     ? StatusBar.currentHeight
+//     : undefined; 
+//   // console.log(height,'==height');
+  
+//   return (
+//       <StatusBar
+//         translucent
+//         backgroundColor={backgroundColor}
+//         {...props}
+//       />
+//   );
+// };
 const App = () => {
   useEffect(() => {
-    SplashScreen.hide(); // Hide when app is ready
+    SplashScreen.hide();
   }, []);
   return (
     <Provider store={store}>
@@ -33,18 +40,6 @@ export default App
 
 const styles = StyleSheet.create({
 
-  container: {
-    flex: 1,
-  },
-  statusBar: {
-    height:  StatusBar.currentHeight,
-  },
-  appBar: {
-    backgroundColor:'#79B45D',
-    height:  Platform.OS === 'ios' ? 44 : 56,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#33373B',
-  },
+ 
+ 
 })

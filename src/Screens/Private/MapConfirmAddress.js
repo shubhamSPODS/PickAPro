@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   addressBox: {
     position: 'absolute',
-    top: scale(85),
+    top: scale(95),
     left: 20,
     right: 20,
     backgroundColor: '#fff',

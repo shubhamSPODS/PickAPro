@@ -39,14 +39,15 @@ export default Header
 const styles = StyleSheet.create({
     container: {
         width: FULL_WIDTH,
-        padding: 10,
+        minHeight: 80,
+        justifyContent:"center"
     },
     headerRow: {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 15,
-        marginVertical: 10,
         alignItems: "center",
+        marginTop:15
     },
     placeholder: {
         width: 20

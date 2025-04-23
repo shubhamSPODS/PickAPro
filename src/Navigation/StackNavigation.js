@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
@@ -23,13 +23,15 @@ export const MainNavigation = () => {
     const user = useSelector(store => store?.user?.user);
 
     return (
-        <View style={{ flex: 1 }}>
-            <MyStatusBar
+        <>
+            {/* <MyStatusBar
                 backgroundColor={user ? THEME_ORANGE : WHITE}
                 barStyle={user ? 'light-content' : 'dark-content'}
-            />
+            /> */}
+            <StatusBar backgroundColor={user ? THEME_ORANGE : WHITE}
+                barStyle={user ? 'light-content' : 'dark-content'}/>
             {user ? <HomeStack /> : <AuthStack />}
-        </View>
+        </>
     );
 };
 
