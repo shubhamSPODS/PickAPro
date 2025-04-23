@@ -10,14 +10,15 @@ import CustomTextInput from '../../Components/CustomTextInput'
 import Typography, { FULL_WIDTH } from '../../Components/Typography'
 import Icon from '../../Components/Icon'
 import CommonButton from '../../Components/CommonButton'
+import ImgBackground from '../../Components/ImgBackground'
 
 const LoginScreen = ({ navigation }) => {
   return (
-    <FormContainer>
+
+      <ImgBackground >
       <AuthHeader
         title='Login or Sign Up'
       />
-      <BottomThemeImg source={THEME_IMG_2} />
       <View style={styles.inputContainer}>
         <CountryCodePicker />
       <CustomTextInput placeholder={'Enter mobile number'} searchIcon containerStyle={{width:'70%'}}/>
@@ -33,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
       <CommonButton title={'Continue'}  onPress={()=>{
         navigation.navigate('OtpVerify')
       }}/>
-      </FormContainer>
+      </ImgBackground>
   )
 }
 
@@ -42,10 +43,10 @@ export default LoginScreen
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
-    width: "90%",
-    marginHorizontal: 15,
+    width: "85%",
     height:45,
     gap:5,
+    alignSelf:'center'
     
   },
   textInput: {

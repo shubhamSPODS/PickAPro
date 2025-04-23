@@ -41,7 +41,7 @@ const HomeScreen = ({navigation}) => {
               <Typography size={10} color={WHITE}>1234 Elm Street, Los Angeles, CA 90001, USA</Typography>
             </View>
             <View style={styles.iconContainer}>
-              <TouchableOpacity onPress={() => dispatch(setUser(null))}>
+              <TouchableOpacity onPress={() => {}}>
                 <ImageBackground source={WALLET_BG} style={styles.imageBackground} resizeMode="contain">
                   <Icon source={WALLET} size={30} />
                 </ImageBackground>
@@ -73,7 +73,7 @@ const HomeScreen = ({navigation}) => {
           </View>
 
           <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Popular Services</Typography>
-          {/* <BannerCarousel images={images} /> */}
+          <BannerCarousel images={images} />
         </LinearGradient>
 
         <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Handyman services</Typography>

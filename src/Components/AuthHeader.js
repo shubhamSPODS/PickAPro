@@ -31,13 +31,12 @@ export default AuthHeader;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 25,
   },
   backBtn: {
-    marginRight: 8,
+    marginTop:20
   },
   title: {
-    flex: 1,
-    marginVertical:25
+    marginVertical:15
   },
 });
