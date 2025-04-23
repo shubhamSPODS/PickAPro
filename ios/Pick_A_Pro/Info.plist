@@ -52,6 +52,13 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need access to your photo library to allow you to upload photos.</string>
+
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>We need access to save photos to your library.</string>
+
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your location to find nearby professionals.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

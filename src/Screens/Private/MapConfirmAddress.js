@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, Platform } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { BACK, MAP_PIN_AREA } from '../../Components/ImageAssets';
 import Header from '../../Components/Header';
 import Typography from '../../Components/Typography';
@@ -22,10 +22,11 @@ const MapConfirmAddress = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Header title={'Confirm your home address'}/>
-      <MapView
+      <MapView 
         style={styles.map}
         region={region}
-        loadingEnabled
+         mapType='hybrid'  
+        
       >
         <Marker coordinate={region}>
           <Image
