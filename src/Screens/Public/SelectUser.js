@@ -13,6 +13,7 @@ import Icon from '../../Components/Icon';
 import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography';
 import { BLACK, WHITE } from '../../Components/Colors';
 import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
+import { scale } from 'react-native-size-matters';
 
 const SelectUser = ({ navigation }) => {
   const handleSelect = (userType) => {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     marginLeft: 22,
-    marginTop: 30,
+    marginTop: scale(35),
   },
   providerBtn: {
     alignSelf: 'flex-end',

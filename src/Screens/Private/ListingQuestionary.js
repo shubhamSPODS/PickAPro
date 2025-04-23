@@ -49,11 +49,13 @@ const ListingQuestionary = () => {
         setAnswers(prev => ({ ...prev, [id]: text }));
     };
     const handleImagePicked = (newImages) => {
+        const imagesArray = Array.isArray(newImages) ? newImages : [newImages];
+    
         setAnswers(prev => {
             const existingImages = prev[selectedImageQuestionId] || [];
             return {
                 ...prev,
-                [selectedImageQuestionId]: [...existingImages, ...newImages]
+                [selectedImageQuestionId]: [...existingImages, ...imagesArray]
             };
         });
     };

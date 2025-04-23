@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   backBtn: {
     marginRight: 8,
+    marginTop:20
   },
   title: {
     flex: 1,

@@ -12,13 +12,16 @@ import { MEDIUM, SEMI_BOLD } from './AppFonts';
 const ImageUploadModal = ({ visible, onClose, onImagePicked }) => {
     const openCamera = async () => {
         try {
-            const image = await ImagePicker.openCamera({
+            console.log('open camera');
+            
+            const images = await ImagePicker.openCamera({
                 width: 300,
                 height: 400,
                 cropping: true,
                 multiple: false
             });
-            onImagePicked(image);
+            
+            onImagePicked(images);
             onClose();
         } catch (error) {
             console.log('Camera Error:', error);

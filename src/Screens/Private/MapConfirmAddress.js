@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 3,
   },
-
+           
   addressSubtitle: {
     fontSize: 13,
     color: '#555',
