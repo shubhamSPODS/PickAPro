@@ -6,6 +6,7 @@ import { BACK, THEME_IMG_1 } from './ImageAssets';
 import { BLACK } from './Colors';
 import Typography from './Typography';
 import { BOLD, REGULAR, SEMI_BOLD } from './AppFonts';
+import { scale } from 'react-native-size-matters';
 
 
 
@@ -31,14 +32,12 @@ export default AuthHeader;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 25,
   },
   backBtn: {
-    marginRight: 8,
-    marginTop:20
+    marginTop:scale(35)
   },
   title: {
-    flex: 1,
-    marginVertical:25
+    marginVertical:15
   },
 });

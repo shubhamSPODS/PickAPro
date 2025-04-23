@@ -28,8 +28,8 @@ export const MainNavigation = () => {
                 backgroundColor={user ? THEME_ORANGE : WHITE}
                 barStyle={user ? 'light-content' : 'dark-content'}
             /> */}
-            <StatusBar backgroundColor={user ? THEME_ORANGE : WHITE}
-                barStyle={user ? 'light-content' : 'dark-content'}/>
+           <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+          
             {user ? <HomeStack /> : <AuthStack />}
         </>
     );

@@ -10,12 +10,13 @@ import { THEME_ORANGE } from '../../Components/Colors';
 import CommonButton from '../../Components/CommonButton';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Redux/Slices';
+import ImgBackground from '../../Components/ImgBackground';
 
 const OtpVerify = () => {
   const otpRef = useRef(null);
- const dispatch = useDispatch()
+  const dispatch = useDispatch()
   return (
-    <FormContainer>
+    <ImgBackground>
       <AuthHeader
         title="Verify your phone number"
         title2="Enter the code that was sent to"
@@ -47,27 +48,29 @@ const OtpVerify = () => {
         </Typography>
       </Typography>
 
-      <CommonButton title="Submit" style={styles.submitButton} onPress={()=>{
-         dispatch(setUser(true))
+      <CommonButton title="Submit" style={styles.submitButton} onPress={() => {
+        dispatch(setUser(true))
       }} />
-      <BottomThemeImg source={THEME_IMG_2} />
-    </FormContainer>
+    </ImgBackground>
   );
 };
 
 const styles = StyleSheet.create({
   otpContainer: {
-    width: FULL_WIDTH - 60,
-    alignSelf: 'center',
-    padding: 5,
     marginVertical: 20,
+    width: FULL_WIDTH - 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   otpInput: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,
+    textAlign: 'center',
+    fontSize: 18,
   },
   resendText: {
     marginHorizontal: 20,

@@ -24,12 +24,14 @@ import SplashScreen from 'react-native-splash-screen'
 //   );
 // };
 const App = () => {
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
     <Provider store={store}>
       <NavigationContainer >
+     
      <MainNavigation/>
       </NavigationContainer>
       </Provider>
