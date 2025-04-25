@@ -2,25 +2,34 @@ import { View, TextInput, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { SEARCH_ICON } from './ImageAssets';
 import { GREY_DARK, LIGHT_GREY, THEME_GREEN, WHITE } from './Colors';
+import Typography from './Typography';
+import { MEDIUM, SEMI_BOLD } from './AppFonts';
 
-const CustomTextInput = ({onBlur, ref, value, onChangeText, placeholder, searchIcon, inputStyle, containerStyle, onFocus }) => {
+const CustomTextInput = ({ heading = '', label, onBlur, ref, value, onChangeText, placeholder, 
+    searchIcon, inputStyle, containerStyle, onFocus }) => {
     return (
-        <View style={[styles.searchContainer, { ...containerStyle }]}>
-            {searchIcon && <Image
-                source={SEARCH_ICON}
-                style={styles.searchIcon}
-            />}
-            <TextInput
-                ref={ref}
-                style={[styles.input, inputStyle]}
-                placeholder={placeholder}
-                placeholderTextColor={GREY_DARK}
-                value={value}
-                onChangeText={onChangeText}
-                onFocus={onFocus}
-                onBlur={onBlur}
-            />
-        </View>
+        <>
+            {label &&
+                <Typography fontFamily={MEDIUM} style={{ marginLeft: 20 }}>{heading}</Typography>
+            }
+            <View style={[styles.searchContainer, { ...containerStyle }]}>
+                {searchIcon && <Image
+                    source={SEARCH_ICON}
+                    style={styles.searchIcon}
+                />}
+
+                <TextInput
+                    ref={ref}
+                    style={[styles.input, inputStyle]}
+                    placeholder={placeholder}
+                    placeholderTextColor={GREY_DARK}
+                    value={value}
+                    onChangeText={onChangeText}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+            </View>
+        </>
     );
 };
 

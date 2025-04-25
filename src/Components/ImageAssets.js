@@ -37,6 +37,10 @@ export const GUEST = require('../Assets/images/Guest.png');
 export const PROVIDER = require('../Assets/images/Provider.png');
 export const SEEKER = require('../Assets/images/Seeker.png');
 export const BOTTOM_IMG = require('../Assets/images/BottomImg.png');
+export const DOLLAR = require('../Assets/images/dollar.png');
+export const LOGO = require('../Assets/images/logoApp.png');
+
+
 
 
 

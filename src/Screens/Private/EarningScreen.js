@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { WOMEN } from '../../Components/ImageAssets';
+import { DOLLAR, WOMEN } from '../../Components/ImageAssets';
 import { GREY_DARK, THEME_GREEN, WHITE } from '../../Components/Colors';
 import Typography from '../../Components/Typography';
 import { MEDIUM } from '../../Components/AppFonts';
+import CommonButton from '../../Components/CommonButton';
+import Icon from '../../Components/Icon';
+import CustomPicker from '../../Components/CustomPicker';
 
 const users = [
   { id: 1, amount: 65, image: WOMEN, borderColor: '#FFA66C' },
@@ -13,32 +16,39 @@ const users = [
   { id: 5, amount: 86, image: WOMEN, borderColor: '#FFA66C' },
 ];
 
-export default function EarningScreen() {
+const EarningScreen = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* <CustomPicker
+  data={['Plumber', 'Electrician', 'Painter']}
+  selectedValue={''}
+  onSelect={(value) => console.log(value)
+  }
+  placeholder="Select your work"
+/> */}
       <View style={styles.imageSection}>
         {users?.map((user, index) => (
           <View key={user.id} style={[styles.userContainer, { borderColor: user.borderColor, marginTop: 25 }]}>
             <Image source={user.image} style={styles.userImage} />
-            <Typography  size={18} fontFamily={MEDIUM} style={[ {marginTop:5, color: user.borderColor === '#FFA66C' ? '#FF7A00' : '#007B3F' }]}>
+            <Typography size={18} fontFamily={MEDIUM} style={[{ marginTop: 5, color: user.borderColor === '#FFA66C' ? '#FF7A00' : '#007B3F' }]}>
               ${user.amount}
             </Typography>
           </View>
         ))}
       </View>
       <View style={styles.footer}>
-        <View style={styles.iconCircle}>
-          <Typography style={styles.icon}>💵</Typography>
-        </View>
+        <Icon size={30} source={DOLLAR} />
         <Typography style={styles.subtitle}>Before move forward</Typography>
         <Typography style={styles.title}>Know how much you can earn with us</Typography>
-        <TouchableOpacity style={styles.button}>
-          <Typography style={styles.buttonText}>See your earning</Typography>
-        </TouchableOpacity>
+        <CommonButton title={'See your earning'} onPress={() => {
+          navigation.navigate('ProviderQuestionary')
+        }} />
       </View>
     </ScrollView>
   );
 }
+
+export default EarningScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -75,7 +85,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   iconCircle: {
-    backgroundColor:THEME_GREEN,
+    backgroundColor: THEME_GREEN,
     borderRadius: 50,
     padding: 10,
     marginBottom: 10,
@@ -87,14 +97,14 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: GREY_DARK,
-    marginBottom: 4,
-    fontFamily:MEDIUM
+    marginVertical: 4,
+    fontFamily: MEDIUM
   },
   title: {
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 20,
-    fontFamily:MEDIUM
+    fontFamily: MEDIUM
   },
   button: {
     backgroundColor: THEME_GREEN,

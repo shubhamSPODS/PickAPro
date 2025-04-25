@@ -9,20 +9,20 @@ import {  MainNavigation } from './src/Navigation/StackNavigation'
 import { THEME_ORANGE, WHITE } from './src/Components/Colors'
 import SplashScreen from 'react-native-splash-screen'
 
-// export const MyStatusBar = ({ backgroundColor, ...props }: any) => {
-//   const height = Platform.OS === 'android'
-//     ? StatusBar.currentHeight
-//     : undefined; 
-//   // console.log(height,'==height');
+export const MyStatusBar = ({ backgroundColor, ...props }: any) => {
+  const height = Platform.OS === 'android'
+    ? StatusBar.currentHeight
+    : undefined; 
+  // console.log(height,'==height');
   
-//   return (
-//       <StatusBar
-//         translucent
-//         backgroundColor={backgroundColor}
-//         {...props}
-//       />
-//   );
-// };
+  return (
+      <StatusBar
+        translucent
+        backgroundColor={backgroundColor}
+        {...props}
+      />
+  );
+};
 const App = () => {
 
   useEffect(() => {

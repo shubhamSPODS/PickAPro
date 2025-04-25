@@ -9,7 +9,6 @@ import SelectUser from '../Screens/Public/SelectUser';
 import LocationAccess from '../Screens/Private/LocationAccess';
 import { MyStatusBar } from '../../App';
 import { THEME_ORANGE, WHITE } from '../Components/Colors';
-import Listing from '../Screens/Private/Listing';
 import ListingQuestionary from '../Screens/Private/ListingQuestionary';
 import TabNavigation from './TabNavigation';
 import ConfirmHomeAddress from '../Screens/Private/ConfirmHomeAddress';
@@ -17,6 +16,7 @@ import MapConfirmAddress from '../Screens/Private/MapConfirmAddress';
 import AdditionalInformation from '../Screens/Private/AdditionalInformation';
 import SavedAddress from '../Screens/Private/SavedAddress';
 import EarningScreen from '../Screens/Private/EarningScreen';
+import ProviderQuestionary from '../Screens/Private/ProviderQuestionary';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +54,7 @@ export const HomeStack = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }} >
             {selectedUser == 'Provider' ? <>
                 <Stack.Screen name="EarningScreen" component={EarningScreen} />
+                <Stack.Screen name="ProviderQuestionary" component={ProviderQuestionary} />
 
             </>
                 :
