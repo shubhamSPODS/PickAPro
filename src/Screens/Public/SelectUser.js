@@ -14,20 +14,14 @@ import Typography, { FULL_HEIGHT, FULL_WIDTH } from '../../Components/Typography
 import { BLACK, WHITE } from '../../Components/Colors';
 import { MEDIUM, SEMI_BOLD } from '../../Components/AppFonts';
 import { scale } from 'react-native-size-matters';
+import { useDispatch } from 'react-redux';
+import { setSelectedUserType, setUser } from '../../Redux/Slices';
 
 const SelectUser = ({ navigation }) => {
+  const dispatch = useDispatch();
   const handleSelect = (userType) => {
-    switch (userType) {
-      case 'Provider':
-        navigation.navigate('LoginScreen');
-        break;
-      case 'Seeker':
-      case 'Guest':
-        Alert.alert('Coming Soon');
-        break;
-      default:
-        break;
-    }
+    dispatch(setSelectedUserType(userType));
+    navigation.navigate('LoginScreen', { selectedUser: userType });
   };
   return (
     <SafeAreaView style={styles.container}>

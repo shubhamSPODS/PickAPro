@@ -1,4 +1,4 @@
-import { StatusBar, View } from 'react-native';
+import { Platform, StatusBar, View } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
@@ -16,22 +16,24 @@ import ConfirmHomeAddress from '../Screens/Private/ConfirmHomeAddress';
 import MapConfirmAddress from '../Screens/Private/MapConfirmAddress';
 import AdditionalInformation from '../Screens/Private/AdditionalInformation';
 import SavedAddress from '../Screens/Private/SavedAddress';
+import EarningScreen from '../Screens/Private/EarningScreen';
 
 const Stack = createNativeStackNavigator();
 
+
 export const MainNavigation = () => {
-    const user = useSelector(store => store?.user?.user);
+    const user = useSelector(store => store?.userDetails?.user);
 
     return (
-        <>
-            {/* <MyStatusBar
-                backgroundColor={user ? THEME_ORANGE : WHITE}
-                barStyle={user ? 'light-content' : 'dark-content'}
-            /> */}
-           <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-          
+        <View style={{ flex: 1 }}>
+            {Platform.OS === 'android' ? <StatusBar backgroundColor={user ? THEME_ORANGE : WHITE}
+                barStyle={user ? 'light-content' : 'dark-content'} /> :
+                <MyStatusBar
+                    backgroundColor={user ? THEME_ORANGE : WHITE}
+                    barStyle={user ? 'light-content' : 'dark-content'}
+                />}
             {user ? <HomeStack /> : <AuthStack />}
-        </>
+        </View>
     );
 };
 
@@ -46,13 +48,25 @@ export const AuthStack = () => {
 };
 
 export const HomeStack = () => {
+
+    const selectedUser = useSelector(store => store?.userDetails?.selectedUserType)
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="LocationAccess">
-            <Stack.Screen name="LocationAccess" component={LocationAccess} />
-            <Stack.Screen name="ConfirmHomeAddress" component={ConfirmHomeAddress} />
-            <Stack.Screen name="MapConfirmAddress" component={MapConfirmAddress} />
-            <Stack.Screen name="AdditionalInformation" component={AdditionalInformation} />
-            <Stack.Screen name="SavedAddress" component={SavedAddress} />
+        <Stack.Navigator screenOptions={{ headerShown: false }} >
+            {selectedUser == 'Provider' ? <>
+                <Stack.Screen name="EarningScreen" component={EarningScreen} />
+
+            </>
+                :
+                <>
+                    <Stack.Screen name="LocationAccess" component={LocationAccess} />
+                    <Stack.Screen name="ConfirmHomeAddress" component={ConfirmHomeAddress} />
+                    <Stack.Screen name="MapConfirmAddress" component={MapConfirmAddress} />
+                    <Stack.Screen name="AdditionalInformation" component={AdditionalInformation} />
+                    <Stack.Screen name="SavedAddress" component={SavedAddress} />
+                </>
+
+            }
+
 
             <Stack.Screen name="MainTabs" component={TabNavigation} />
             <Stack.Screen name="ListingQuestionary" component={ListingQuestionary} />

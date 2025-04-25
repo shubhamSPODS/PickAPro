@@ -7,9 +7,9 @@ import Icon from '../../Components/Icon'
 import { WOMEN } from '../../Components/ImageAssets'
 import { MEDIUM, REGULAR } from '../../Components/AppFonts'
 import { useDispatch } from 'react-redux'
-import { clearUser } from '../../Redux/Slices'
+import { clearUser, logout, setUser } from '../../Redux/Slices'
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch()
   const varData = [
     { label: 'Job history' },
@@ -44,7 +44,8 @@ const ProfileScreen = () => {
           ]}
           onPress={() => {
             if (item?.label === 'Logout') {
-              dispatch(clearUser())
+              dispatch(setUser());
+           
             }
           }}
         >

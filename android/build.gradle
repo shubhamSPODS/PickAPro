@@ -1,22 +1,27 @@
 buildscript {
     ext {
-        buildToolsVersion = "34.0.0"
+        buildToolsVersion = "33.0.0"
         minSdkVersion = 23
-        compileSdkVersion = 35
-        targetSdkVersion = 35
-        ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.25"
-        playServicesVersion = "21.0.1"
+        compileSdkVersion = 34
+        targetSdkVersion = 33
+        appCompatVersion = "1.4.2"
+        googlePlayServicesLocationVersion = "20.0.0"
+        RNMapboxMapsImpl = "mapbox"
+        ndkVersion = "23.1.7779620"
+          kotlinVersion = "1.9.25"
+         playServicesLocationVersion = "21.0.1"
+    playServicesMapsVersion = "18.1.0" 
     }
     repositories {
         google()
         mavenCentral()
+           jcenter() 
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.google.gms:google-services:4.3.14")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.2")
     }
 }
 
-apply plugin: "com.facebook.react.rootproject"

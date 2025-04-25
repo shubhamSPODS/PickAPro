@@ -73,7 +73,7 @@ const HomeScreen = ({navigation}) => {
           </View>
 
           <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Popular Services</Typography>
-          <BannerCarousel images={images} />
+          {/* <BannerCarousel images={images} /> */}
         </LinearGradient>
 
         <Typography fontFamily={SEMI_BOLD} style={styles.sectionTitle}>Handyman services</Typography>
