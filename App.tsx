@@ -18,7 +18,7 @@ export const MyStatusBar = ({ backgroundColor, ...props }: any) => (
 );
 const App = () => {
   useEffect(() => {
-    SplashScreen.hide(); // Hide when app is ready
+    SplashScreen.hide();
   }, []);
   return (
     <Provider store={store}>

@@ -27,12 +27,13 @@ const AdditionalInformation = ({navigation}) => {
                     <View style={styles.container}>
                         <Typography size={14}>Tisco Plaza House, Ikeja</Typography>
 
-                        <MapView style={styles.map} region={region} loadingEnabled>
+                        <MapView  mapType='hybrid'   style={styles.map} region={region} loadingEnabled>
                             <Marker coordinate={region}>
                                 <Icon
                                     source={MAP_PIN_AREA}
                                     style={styles.pinImage}
                                     resizeMode="contain"
+                                 
                                 />
                             </Marker>
                         </MapView>

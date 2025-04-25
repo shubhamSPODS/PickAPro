@@ -11,6 +11,6 @@ class MainActivity : ReactActivity() {
     }
 
     override fun getMainComponentName(): String {
-        return "pick_a_pro"  // <- Must match AppRegistry name in JS
+         return "Pick_A_Pro"  
     }
 }
