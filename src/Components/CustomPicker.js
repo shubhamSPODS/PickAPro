@@ -22,7 +22,8 @@ const CustomPicker = ({
     onSelect,
     placeholder = 'Select option',
     labelText,
-    label = false
+    label = false,
+    heading='Heading'
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -100,7 +101,7 @@ const CustomPicker = ({
                                 alignItems: "center", justifyContent: "space-between",
                             }}>
                                 <View></View>
-                                <Typography size={16} color={WHITE} fontFamily={BOLD} style={{ lineHeight: 35 }}>Work</Typography>
+                                <Typography size={16} color={WHITE} fontFamily={BOLD} style={{ lineHeight: 35 }}>{heading}</Typography>
                                 <Icon source={CLOSE} size={23} />
 
                             </View>

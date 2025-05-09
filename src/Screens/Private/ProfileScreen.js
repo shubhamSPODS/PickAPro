@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, StyleSheet,TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { GREY_DARK, THEME_ORANGE, WHITE } from '../../Components/Colors'
 import Header from '../../Components/Header'
@@ -7,12 +7,12 @@ import Icon from '../../Components/Icon'
 import { WOMEN } from '../../Components/ImageAssets'
 import { MEDIUM, REGULAR } from '../../Components/AppFonts'
 import { useDispatch } from 'react-redux'
-import { clearUser, logout, setUser } from '../../Redux/Slices'
+import { setUser } from '../../Redux/Slices'
 
 const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch()
   const varData = [
-    { label: 'Job history' },
+    { label: 'My Bookings' },
     { label: 'My Hub', badge: 'New!' },
     { label: 'Credits' },
     { label: 'Loans' },
@@ -43,6 +43,16 @@ const ProfileScreen = ({navigation}) => {
             { borderBottomWidth: varData?.length - 1 === index ? 0 : 1 }
           ]}
           onPress={() => {
+
+          
+           switch (item?.label) {
+            case 'My Bookings':
+                navigation.navigate('MyBookings')
+              break;
+           
+            default:
+              break;
+           }
             if (item?.label === 'Logout') {
               dispatch(setUser());
            

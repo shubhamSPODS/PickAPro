@@ -76,7 +76,7 @@ const ListingQuestionary = () => {
                                 height: 80,
                                 borderWidth: 1,
                                 borderColor: GREY_DARK,
-                                borderStyle: 'dotted',
+                                bMyBookingstyle: 'dotted',
                                 alignItems: "center",
                                 justifyContent: 'center',
                                 borderRadius: 5
@@ -99,7 +99,7 @@ const ListingQuestionary = () => {
                                     borderWidth: 1,
                                     borderColor: GREY_DARK,
                                     overflow: 'hidden',
-                                    borderStyle: 'dotted',
+                                    bMyBookingstyle: 'dotted',
                                 }}>
                                     <Icon
                                         source={{ uri: img.path }}

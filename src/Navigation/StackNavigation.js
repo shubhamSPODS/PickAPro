@@ -17,6 +17,7 @@ import AdditionalInformation from '../Screens/Private/AdditionalInformation';
 import SavedAddress from '../Screens/Private/SavedAddress';
 import EarningScreen from '../Screens/Private/EarningScreen';
 import ProviderQuestionary from '../Screens/Private/ProviderQuestionary';
+import MyBookings from '../Screens/Private/MyBookings';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,7 +56,7 @@ export const HomeStack = () => {
             {selectedUser == 'Provider' ? <>
                 <Stack.Screen name="EarningScreen" component={EarningScreen} />
                 <Stack.Screen name="ProviderQuestionary" component={ProviderQuestionary} />
-
+                
             </>
                 :
                 <>
@@ -64,6 +65,7 @@ export const HomeStack = () => {
                     <Stack.Screen name="MapConfirmAddress" component={MapConfirmAddress} />
                     <Stack.Screen name="AdditionalInformation" component={AdditionalInformation} />
                     <Stack.Screen name="SavedAddress" component={SavedAddress} />
+                    <Stack.Screen name='MyBookings' component={MyBookings}></Stack.Screen>
                 </>
 
             }

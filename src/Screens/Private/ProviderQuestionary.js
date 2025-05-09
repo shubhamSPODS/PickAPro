@@ -56,6 +56,7 @@ const ProviderQuestionary = () => {
                 data={workData}
                 labelText={'What work do you do?'}
                 label
+                heading='Work'
                 selectedValue={selecteWork?.name}
                 onSelect={(e) => {
                     setSelectedWork(e);
@@ -65,6 +66,7 @@ const ProviderQuestionary = () => {
 
             <CustomPicker
                 data={live}
+                 heading='Live'
                 labelText={'Where do you live?'}
                 label
                 selectedValue={selecteLive?.name}
